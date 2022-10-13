@@ -1,14 +1,26 @@
+
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         
         #reverse function
-        def reverse(prev, head):
-            if not head:
-                return prev
-            tmp = head.next
-            head.next = prev
-            return reverse(head, tmp)
+#         def reverse(prev, head):
+#             if not head:
+#                 return prev
+#             tmp = head.next
+#             head.next = prev
+#             return reverse(head, tmp)
         
+    
+        def reverse(head):
+            previous = None
+            curr = head 
+            
+            while curr:
+                temp = curr.next
+                curr.next = previous
+                previous = curr
+                curr = temp
+            return previous
         #use slow and fast pointer to get the mid of list
         sp = head
         fp = sp
@@ -16,7 +28,7 @@ class Solution:
             sp = sp.next
             fp = fp.next.next
             
-        mid = reverse(None, sp)
+        mid = reverse(sp)
         
         #check for palindrome
         def check(mid, head):
