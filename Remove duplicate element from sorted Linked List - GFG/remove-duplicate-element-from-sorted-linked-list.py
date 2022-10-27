@@ -16,8 +16,9 @@
 '''
 #Function to remove duplicates from sorted linked list.
 def removeDuplicates(head):
-    if head is None:
-        return 
+    if 1==2:
+        pass
+    #     return 
     else:
         node = head
         dupes = {node.data}
