@@ -16,39 +16,27 @@
 '''
 #Function to remove duplicates from sorted linked list.
 def removeDuplicates(head):
-    if 1==2:
-        pass
-    #     return 
-    else:
-        node = head
-        dupes = {node.data}
-        while node.next:
-            if node.next.data in dupes:
-                node.next = node.next.next
-            else:
-                dupes.add(node.next.data)
-                node = node.next
-        return head
-    # k = set()
-    # while head:
-    #     if head.data in k:
-    #         pass
-    #     else:
-    #         k.add(head.data)
-    #     head= head.next
-    # j = Node(0)
-    # m = j
-    # for i in k:
-    #     j.data =i
-    #     j = j.next
+    
+    values = set()
+      
+    prev_node = head
+    current_node = head
+      
+      # Iterating till the end of the list is reached
+    while current_node:
+        if current_node.data not in values:
+          # If this is unique node let's just leave it.
+            prev_node = current_node
+          # Register the new unique node value.
+            values.add(current_node.data)
+        else:
+          # Node is not unique, we need to forget it.
+          # Forgetting is hapenning by replacing the 'next' link for a parent.
+          prev_node.next = current_node.next
         
-        # if head.next and head.data==head.next.data:
-        #     while head.next and head.data==head.next.data:
-        #         head = head.next
-        #     head.next = head.next
-        # else:
-        #     head = head.next
-    return j
+        # Do one step towards the end of the list. 
+        current_node = current_node.next
+    return head
     #code here
 
 
