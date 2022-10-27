@@ -16,13 +16,38 @@
 '''
 #Function to remove duplicates from sorted linked list.
 def removeDuplicates(head):
-    curr = head
-    while curr and curr.next:
-        if curr.data==curr.next.data:
-            curr.next = curr.next.next
-        else:
-            curr= curr.next 
-    return head
+    if head is None:
+        return 
+    else:
+        node = head
+        dupes = {node.data}
+        while node.next:
+            if node.next.data in dupes:
+                node.next = node.next.next
+            else:
+                dupes.add(node.next.data)
+                node = node.next
+        return head
+    # k = set()
+    # while head:
+    #     if head.data in k:
+    #         pass
+    #     else:
+    #         k.add(head.data)
+    #     head= head.next
+    # j = Node(0)
+    # m = j
+    # for i in k:
+    #     j.data =i
+    #     j = j.next
+        
+        # if head.next and head.data==head.next.data:
+        #     while head.next and head.data==head.next.data:
+        #         head = head.next
+        #     head.next = head.next
+        # else:
+        #     head = head.next
+    return j
     #code here
 
 
