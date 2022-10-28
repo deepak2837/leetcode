@@ -4,73 +4,23 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        curr = head 
-        
-        
-        
-        
-        count = 0 
-        while curr:
-            count = count+1
-            curr = curr.next
-        # print(count)
-        if k>count:
+    def swapNodes(self, head: ListNode, k: int) -> ListNode:
+        dummy = pre_right = pre_left = ListNode(next=head)
+        right = left = head
+        for i in range(k-1):
+            pre_left = left
+            left = left.next
+
+        null_checker = left
+
+        while null_checker.next:
+            pre_right = right
+            right = right.next
+            null_checker = null_checker.next
+
+        if left == right:
             return head
-        
-        n1 = None
-        counts = 0
-        currs = head
-        while currs:
-            counts = counts+1
-            if counts==k:
-                n1 = currs.val
-                break
-            else:
-                currs = currs.next
-        print(n1)
-        n2 = None
-        countss = 0
-        currss = head
-        while currss:
-            countss = countss+1
-            if countss==count-k+1:
-                n2 = currss.val
-                break
-            else:
-                currss = currss.next
-        print(n2)
-        
-        if k==1:
-            head.val =n2
-        if count==2 and k ==2:
-            temp = head.next.val
-            head.next.val = head.val
-            head.val= temp
-            return head
-        
-        if k ==count:
-            print("in this")
-            head.val = n1
-            f = head
-            while f:
-                if f.next==None:
-                    f.val= n2
-                f = f.next
-            return head
-            
-        
-        k1 = head
-        for i in range(1,count+1):
-            
-        
-            if i ==k-1:
-                k1.next.val =n2
-            if i ==count-k:
-                k1.next.val = n1
-            k1 = k1.next
-                
-        return head
-        
-            
-        
+
+        pre_left.next, pre_right.next = right, left
+        left.next, right.next = right.next, left.next
+        return dummy.next
