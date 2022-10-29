@@ -11,32 +11,61 @@ class Node:
 
             
 def findIntersection(a,b):
-    dummy = Node(0)
-    tail = dummy;
-    dummy.next = None;
-    def push(head_ref, new_data):
-        new_node = Node(0)
-        new_node.data = new_data;
-        new_node.next = (head_ref);
-        (head_ref) = new_node;   
-        return head_ref
-  
-    ''' Once one or the other
-    list runs out -- we're done '''
-    while (a != None and b != None):
-        if (a.data == b.data):
-            tail.next = push((tail.next), a.data)
-            tail = tail.next
-            a = a.next
-            b = b.next
-         
-        # advance the smaller list
-        elif(a.data < b.data):
-            a = a.next
-        else:
-            b = b.next
+    # dummy = Node(0)
+    # tail = dummy;
+    # dummy.next = None;
     
-    return (dummy.next)
+    
+    
+    
+    # def push(head_ref, new_data):
+    #     new_node = Node(0)
+    #     new_node.data = new_data;
+    #     new_node.next = (head_ref);
+    #     (head_ref) = new_node;   
+    #     return head_ref
+  
+  
+  
+  
+    # while (a != None and b != None):
+    #     if (a.data == b.data):
+    #         tail.next = push((tail.next), a.data)
+    #         tail = tail.next
+    #         a = a.next
+    #         b = b.next
+         
+    #     # advance the smaller list
+    #     elif(a.data < b.data):
+    #         a = a.next
+    #     else:
+    #         b = b.next
+    # return (dummy.next)
+    
+    
+    result = Node(0)
+    curr = result
+ 
+    # Advance comparing the first
+    # nodes in both lists.
+    # When one or the other list runs
+    # out, we're done.
+    while (a != None and b != None):
+            if (a.data == b.data):
+                # found a node for the intersection
+                curr.next = Node(a.data)
+                curr = curr.next
+ 
+                a = a.next
+                b = b.next
+            elif (a.data < b.data):
+                a = a.next  # advance the smaller list
+            else:
+                b = b.next
+    result = result.next
+    return result
+    
+    
     
 
         
