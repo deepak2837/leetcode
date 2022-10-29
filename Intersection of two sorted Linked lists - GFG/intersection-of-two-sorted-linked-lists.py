@@ -62,8 +62,8 @@ def findIntersection(a,b):
                 a = a.next  # advance the smaller list
             else:
                 b = b.next
-    result = result.next
-    return result
+  
+    return result.next
     
     
     
